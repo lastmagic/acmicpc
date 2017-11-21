@@ -81,7 +81,7 @@ void process(){
   }
 }
 
-void output(){
+void output(){df
   if(ans == 1){
     printf("-1");
   }else{
