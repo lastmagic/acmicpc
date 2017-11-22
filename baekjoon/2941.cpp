@@ -1,63 +1,59 @@
-#include <iostream>
 #include <cstdio>
 #include <cstdlib>
 #include <cstring>
-using namespace std;
+#include <algorithm>
+char buf[110];
+int len;
+int ans;
+void input(){
+  scanf("%s", buf);
+  len = strlen(buf);
+}
 
-int main(void)
-{
-  char buf[101];
-  char temp[4];
-  char arr[8][4]={
-    "c=","c-","dz","d-","lj","nj","s=","z="
-  };
-  cin >> buf;
-  int length = strlen(buf),i=1,j=0,cnt=0;
-  cout << "buf=" <<buf <<" length = "<< length<<'\n';
-  while(1)
-  {
-    if(i == length)
-      break;
-    temp[0] = buf[i-1];
-    temp[1] = buf[i];
-    temp[2] = '\0';
-    temp[3] = '\0';
-    cout << "i = "<<i <<" temp = " << temp <<'\n';
-    for(j=0; j<8; j++)
-    {
-      if(strcmp(temp, arr[j])==0)
-      {
-        if(strcmp(temp, "dz")==0)
-        {
-          temp[2] = buf[i+1];
-          if(strcmp(temp, "dz=")==0)
-          {
-            i = i+3;
-            cnt++;
-            continue;
-          }
-          else
-          {
-            i++;
-            cnt++;
-            continue;
-          }
-
+void process(){
+  int i=0;
+  while(buf[i]!='\0'){
+    if(buf[i]>='a'&&buf[i]<='z'){
+      if(buf[i]=='c'){
+        if(buf[i+1]=='='||buf[i+1]=='-'){
+          i++;
         }
-        else
-        {
-          i = i+2;
-          cnt++;
-          continue;
-        }
+        ans++;
       }
-      else
-      {
-        i++;
-        cnt++;
-        continue;
+      else if(buf[i]=='d'){
+        if(buf[i+1]=='z'&&buf[i+2]=='='){
+          i+=2;
+        }else if(buf[i+1]=='-'){
+          i++;
+        }
+        ans++;
+      }
+      else if(buf[i]=='l'||buf[i]=='n'){
+        if(buf[i+1]=='j'){
+          i++;
+        }
+        ans++;
+      }
+      else if(buf[i]=='s'||buf[i]=='z'){
+        if(buf[i+1]=='='){
+          i++;
+        }
+        ans++;
+      }
+      else{
+        ans++;
       }
     }
+    i++;
   }
-  cout << cnt;
+}
+
+void output(){
+  printf("%d", ans);
+}
+int main(int argc, char const *argv[]) {
+  input();
+  process();
+  output();
+  return 0;
 }
