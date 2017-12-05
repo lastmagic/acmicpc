@@ -1,53 +1,57 @@
-#include <iostream>
-#include <cstring>
 #include <cstdio>
 #include <cstdlib>
+#include <cstring>
+#include <string>
+#include <algorithm>
+#include <vector>
+#include <iostream>
+
 using namespace std;
-void swap(char *a, char *b)
-{
-  char temp[51];
-  strcpy(temp , a);
-  strcpy(a, b);
-  strcpy(b, temp);
+using pii=pair<int,int>;
+using lint=long long;
+int n;
+string str[22222];
+bool compare(const string& a, const string& b){
+	if (a.length() < b.length()) return true;
+	else if (a.length() == b.length()){
+		if (strcmp(a.c_str(), b.c_str()) <0)
+			return true;
+		else
+			return false;
+	}
+	else
+		return false;
 }
-void exchangeSort(char **arr, int size)
-{
-  for(int i=0; i<size; i++)
-  {
-    for(int j=i+1; j<size; j++)
-    {
-      if(strlen(arr[i]) > strlen(arr[j]))
-      {
-        swap(arr[i], arr[j]);
-      }
-      else if(strlen(arr[i]) == strlen(arr[j]))
-      {
-        for(int k=0; k<strlen(arr[i]); k++)
-        {
-          if(arr[i][k] > arr[j][k])
-          {
-            swap(arr[i], arr[j]);
-            break;
-          }
-        }
-      }
-    }
-  }
+
+void input(){
+	cin >> n;
+	for(int i=0; i<n; i++){
+		cin >> str[i];
+	}
 }
-int main(int argc, char const *argv[]) {
-  int num;
-  cin >> num;
-  char **arr = new char *[num];
-  for(int i=0; i<num; i++)
-  {
-    arr[i] = new char[51];
-    cin >> arr[i];
-  }
-  exchangeSort(arr, num);
-  for(int i=0; i<num; i++)
-  {
-    if(strcmp(arr[i-1], arr[i]) != 0)
-      cout << arr[i] << "\n";
-  }
-  return 0;
+
+void process(){
+	std::sort(str, str+n, compare);
+}
+
+void output(){
+	for(int i=0; i<n; i++){
+		if(i==0){
+			cout << str[i] <<"\n";
+			continue;
+		}
+		else{
+			if(str[i].compare(str[i-1])){
+				cout << str[i] <<"\n";
+			}
+		}
+	}
+}
+
+int main(void){
+	ios::sync_with_stdio(false);
+	input();
+	process();
+	output();
+	return 0;
 }
