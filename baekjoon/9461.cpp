@@ -8,12 +8,10 @@ using std::pair;
 using std::vector;
 using pii=pair<int,int>;
 using lint=long long;
+int tc;
+int n;
 void input(){
-
-}
-
-void init(){
-
+	scanf("%d", &n);
 }
 
 void process(){
@@ -25,9 +23,12 @@ void output(){
 }
 
 int main(void){
-	input();
-	init();
-	process();
-	output();
+	scanf("%d", &tc);
+	for(int i=0; i<tc; i++){
+		input();
+		process();
+		output();
+	}
+
 	return 0;
 }
