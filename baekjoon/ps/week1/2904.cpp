@@ -71,14 +71,8 @@ void primeFactorization(int n, int index) {
   }
 }
 
-void process(){
-  // Step 1 primeFactorization
-  for (int i=0; i<n; i++) {
-    primeFactorization(arr[i], i);
-  }
-
-  // Step 2 distribute primeNumber
-  for (int i=2; i<1000000; i++) {
+void distributePrimeNumber() {
+for (int i=2; i<1000000; i++) {
     if (primeCnt[i]) {
       int q = primeCnt[i] / n;
       int r = primeCnt[i] % n;
@@ -102,6 +96,16 @@ void process(){
   }
   // resCnt는 in,out 상관없이 2번씩 세었으니 2로 나눠줌.
   resCnt /= 2;
+}
+
+void process(){
+  // Step 1 primeFactorization
+  for (int i=0; i<n; i++) {
+    primeFactorization(arr[i], i);
+  }
+
+  // Step 2 distribute primeNumber
+  distributePrimeNumber();
 }
 
 void output(){
