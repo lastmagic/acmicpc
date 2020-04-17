@@ -26,7 +26,7 @@ int n,m,c;
 
 // 오락실의 위치를 저장
 int arr[MAX_N][MAX_N]; 
-// D[i][j][k][l] i,j 까지 왔을때 총 들린 오락실이 k개 이고, 마지막으로 들린 오락실이 l인 경우의 수
+// D[i][j][k][l] i,j 까지 왔을때 총 들린 오락실이 k개 이고, 마지막으로 들린 오락실의 번호가 l인 경우의 수
 int D[MAX_N][MAX_N][MAX_N][MAX_N]; 
 vector <int> ans;
 void input(){
