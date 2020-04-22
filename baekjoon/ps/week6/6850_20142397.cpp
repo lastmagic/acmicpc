@@ -69,22 +69,11 @@ void findPolarAngleAndLength(int x, int y) {
 
 // 정렬 기준의 순서는 angle, y, x
 bool compByPolarAngle(point p1, point p2) {
-	if (p2.polarAngle > p1.polarAngle) {
-		return true;
-	} else if (p2.polarAngle < p1.polarAngle) {
-		return false;
-	} else {
-		if (p2.y > p1.y) {
-			return true;
-		} else if (p2.y < p1.y) {
-			return false;
-		} else {
-			if (p2.x > p1.x) {
-				return true;
-			} else {
-				return false;
-			}
+	if (p2.polarAngle == p1.polarAngle) {
+		if(p2.y == p1.y) {
+			return p2.x > p1.x;
 		}
+		return p2.y > p1.y;
 	}
 	return p2.polarAngle > p1.polarAngle;
 }
