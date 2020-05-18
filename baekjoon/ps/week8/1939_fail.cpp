@@ -28,7 +28,6 @@ typedef struct edge {
 vector<pii> graph[100001];
 vector<edge> e;
 int parent[100001];
-int root[100001];
 lint ans;
 void input(){
   scanf("%d %d", &n, &m);
@@ -79,18 +78,14 @@ void init(){
   ans = 0;
 }
 
-// int findRoot(int vertex) {
-//   int p = vertex;
-
-//   while(parent[p] != p) {
-//     p = parent[p];
-//   }
-
-//   return p;
-// }
-
 int findRoot(int vertex) {
-  return root[vertex];
+  int p = vertex;
+
+  while(parent[p] != p) {
+    p = parent[p];
+  }
+
+  return p;
 }
 
 void merge(int v1, int v2) {
@@ -98,11 +93,9 @@ void merge(int v1, int v2) {
   int v2Root = findRoot(v2);
 
   if (v1Root < v2Root) {
-    // parent[v2Root] = v1Root;
-    root[v2Root] = v1Root;
+    parent[v2Root] = v1Root;
   } else if (v1Root > v2Root) {
-    // parent[v1Root] = v2Root;
-    root[v2Root] = v1Root;
+    parent[v1Root] = v2Root;
   }
 }
 

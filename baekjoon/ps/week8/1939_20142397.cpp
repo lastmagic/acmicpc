@@ -36,12 +36,12 @@ void input(){
     
     bool hasElement = false;
     for (auto &cur : graph[a]) {
+			// 기존 a,b에 Edge가 있다면 w가 큰경우에만 추가
       if (cur.first == b) {
         hasElement = true;
         if (cur.second < w) {
-					// 내것도 바꾸고
           cur.second = w;
-					// 파트너도 바꿔야 한다
+					// b,a 에 Edge도 갱신
 					for (auto &pairCur : graph[b]) {
 						if (pairCur.first == a) {
 							pairCur.second = w;
@@ -50,6 +50,7 @@ void input(){
         }
       }
     }
+		// 기존 a,b 에 Edge가 없다면 추가
     if (!hasElement) {
       graph[a].push_back({b, w});
 			graph[b].push_back({a, w});
@@ -84,6 +85,7 @@ bool isConnectable() {
 	return visited[factory2];
 }
 
+// 결국 이분탐색이지만 이분탐색 시 결정 조건이 bfs로 부터 나옴
 void parametericSearch(int left, int right){
 	int mid = (left + right) / 2;
 	if (left > right) {
