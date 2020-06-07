@@ -50,7 +50,7 @@ void input(){
   scanf("%d", &n);
   for(int i=0; i<n; i++) {
     scanf("%d %d %d", &node, &left, &right);
-    graph[node].push_back(make_pair(left, right));
+    graph[node].push_back({left, right});
     if(left != -1)
       parent[left] = node;
     if(right != -1)
@@ -93,9 +93,9 @@ void findRes() {
   for(int i=1; i<=maxLevel; i++) {
     int curMax = -INF;
     int curMin = INF;
-    for(auto it = levelPosition[i].begin(); it != levelPosition[i].end(); it++) {
-      if ((*it) > curMax) curMax = (*it);
-      if ((*it) < curMin) curMin = (*it);
+    for(auto cur: levelPosition[i]) {
+      if (cur > curMax) curMax = cur;
+      if (cur < curMin) curMin = cur;
       if ((curMax - curMin) + 1 > resBreadth){
         resBreadth = (curMax - curMin) + 1;
         resLevel = i;

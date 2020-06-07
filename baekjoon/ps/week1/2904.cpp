@@ -9,6 +9,8 @@ https://www.acmicpc.net/problem/2904
 상근이는 위의 행동을 무한히 반복할 수 있다. 할머니는 상근이가 만든 수를 보고 점수를 계산한다. 점수가 높을수록 할머니는 상근이에게 사탕을 많이 준다. 점수는 종이에 적혀있는 모든 수의 최대공약수이다.
 
 상근이가 얻을 수 있는 가장 높은 점수를 구하는 프로그램을 작성하시오. 또, 그 점수를 얻으려면 최소 몇 번 해야 하는지도 구한다.
+
+Keyword: BruteForce, Eratos, Prime
 */
 #include <cstdio>
 #include <cstdlib>
@@ -52,6 +54,7 @@ void init(){
   eratos();
 }
 
+// 현재 값을 소인수 분해, n = 24 => 2^3 * 3 이므로 v[index] = [{2, 3}, {3, 1}]
 void primeFactorization(int n, int index) {
   int cur = n;
   for(int i=2; i<=n; i++) {
@@ -71,6 +74,7 @@ void primeFactorization(int n, int index) {
   }
 }
 
+// 소인수 분해 한 결과 각 소수를 N개의 숫자가 공평하게 나눠먹어야 하니 N으로 나눈 몫 씩은 꼭 가지고 나머지 숫자 만큼은 안옮겨도 되니 빼줌
 void distributePrimeNumber() {
 for (int i=2; i<1000000; i++) {
     if (primeCnt[i]) {
